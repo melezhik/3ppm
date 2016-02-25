@@ -1,5 +1,7 @@
 BEGIN { 
-    system("sparrow index update 2>/dev/null") unless $ENV{skip_test}
+    if (!$ENV{skip_test} and !$ENV{skip_index_update}){
+        system("sparrow index update 2>/dev/null") 
+    }
 };
 
 
@@ -18,18 +20,18 @@ next if $ENV{skip_test};
 
 print "running $p for $m ... \n";
 
-system("(date; sparrow plg install $p) > /usr/share/3ppm/$p.txt");
+system("(date; sparrow plg install $p) > /usr/share/cpanparty/$p.txt");
 
 my $port = empty_port();
 
-system("export port=$port && export pid_file=/tmp/app_$port; sparrow plg run $p > /usr/share/3ppm/$p.txt ; echo \$? > /usr/share/3ppm/$p.status;   kill ".'`'."cat /tmp/app_$port".'`');
+system("export port=$port && export pid_file=/tmp/app_$port; sparrow plg run $p > /usr/share/cpanparty/$p.txt ; echo \$? > /usr/share/cpanparty/$p.status;   kill ".'`'."cat /tmp/app_$port".'`');
 
 
 END {
 
     print "update summry report ... \n";
 
-    open SUMMARY, ">", "/usr/share/3ppm/index.html" or die $!;
+    open SUMMARY, ">", "/usr/share/cpanparty/index.html" or die $!;
 
 
 print SUMMARY <<HERE;
@@ -63,10 +65,10 @@ HERE
 	<th> report </th>\n";
 
     for my $p (keys %tests){
-        open my $status_fh, "/usr/share/3ppm/$p.status" or die $!;
+        open my $status_fh, "/usr/share/cpanparty/$p.status" or die $!;
         my $st = <$status_fh>;
         close $status_fh;
-        my @s = stat("/usr/share/3ppm/$p.status"); 
+        my @s = stat("/usr/share/cpanparty/$p.status"); 
     	my $check_date = gmtime($s[9])->strftime("%d %b %Y %H:%S");
         my $status =  ( $st == 0 ) ? 
 		'<span class="label label-success">Passed</span>' : 
