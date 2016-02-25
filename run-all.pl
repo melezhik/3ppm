@@ -58,7 +58,19 @@ export port=$port
 
 export pid_file=/tmp/app_$port 
 
-sparrow plg run $p > /usr/share/cpanparty/$p.txt
+echo "### tested application code " > /usr/share/cpanparty/$p.txt
+
+echo  >> /usr/share/cpanparty/$p.txt
+
+echo  >> /usr/share/cpanparty/$p.txt
+
+cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.txt
+
+echo  >> /usr/share/cpanparty/$p.txt
+
+echo  >> /usr/share/cpanparty/$p.txt
+
+sparrow plg run $p >> /usr/share/cpanparty/$p.txt
 
 echo \$? > /usr/share/cpanparty/$p.status
 
