@@ -42,13 +42,15 @@ print SUMMARY <<HERE;
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
+<head><title>cpanparty.org - Third Party Tests for CPAN modules</title></head>
+
 HERE
 
     print SUMMARY '
     <div class="container">
 	    <div class="panel panel-default">
+            <div class="panel-heading">CPAN Party Test Reports </div>
             <div class="panel-body">
-                CPAN Party Tests Reports
 	            <table class="table table-stripped">
     	';
 
