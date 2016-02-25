@@ -18,7 +18,7 @@ $tests{$p} = $m;
 
 next if $ENV{skip_test};
 
-print "running $p for $m ... \n";
+print "processing $p for $m ... \n";
 
 print "calculating test suite check sum ... \n";
 
@@ -38,7 +38,7 @@ print "calculating test suite check sum after update ... \n";
 system('find '.sparrow_root()."/plugins/public/$p". ' -type f \( -not -iname 02packages.details.txt \)  -print0 | xargs -0 md5sum > /tmp/b.txt');
 
 
-if ( ! system('diff -u /tmp/a.txt /tmp/b.txt') ){
+if ( ! system('diff -q /tmp/a.txt /tmp/b.txt') ){
     
     if ($ENV{run_old_tests}){
         print "test suite is uptodate - continue due to run_old_tests  \n";
@@ -47,6 +47,8 @@ if ( ! system('diff -u /tmp/a.txt /tmp/b.txt') ){
         next;
     }
 }
+
+print "running $p test suite for $m ... \n";
 
 my $port = empty_port();
 
