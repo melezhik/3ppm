@@ -52,7 +52,22 @@ print "running $p test suite for $m ... \n";
 
 my $port = empty_port();
 
-system("export port=$port && export pid_file=/tmp/app_$port; sparrow plg run $p >> /usr/share/cpanparty/$p.txt ; echo \$? > /usr/share/cpanparty/$p.status;   kill ".'`'."cat /tmp/app_$port".'`');
+system <<HERE;
+
+export port=$port
+
+export pid_file=/tmp/app_$port 
+
+export prove_options="'-P HTML=outfile:/usr/share/cpanparty/$p.html,css_uri:style.css,js_uri:foo.js,force_inline_css:0'"
+
+sparrow plg run $p >> /usr/share/cpanparty/$p.txt
+
+echo \$? > /usr/share/cpanparty/$p.status
+
+kill `cat /tmp/app_$port`
+
+HERE
+
 
 
 END {
@@ -121,7 +136,10 @@ HERE
 		        <td> $p </td> 
 		        <td><strong> $m </strong> </td> 
 		        <td> $status </td>
-		        <td><a href="$p.txt" target="_blank">show</a></td> 
+		        <td>
+                    <a href="$p.txt" target="_blank">text</a><br>
+                    <a href="$p.html" target="_blank">html</a>
+                </td> 
                 <td class="breadcrumb"><small>$report_summary</small><td>
 	         </tr>
 
