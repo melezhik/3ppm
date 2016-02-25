@@ -58,9 +58,7 @@ export port=$port
 
 export pid_file=/tmp/app_$port 
 
-export prove_options="'-P HTML=outfile:/usr/share/cpanparty/$p.html,css_uri:style.css,js_uri:foo.js,force_inline_css:0'"
-
-sparrow plg run $p >> /usr/share/cpanparty/$p.txt
+sparrow plg run $p > /usr/share/cpanparty/$p.txt
 
 echo \$? > /usr/share/cpanparty/$p.status
 
@@ -137,8 +135,7 @@ HERE
 		        <td><strong> $m </strong> </td> 
 		        <td> $status </td>
 		        <td>
-                    <a href="$p.txt" target="_blank">text</a><br>
-                    <a href="$p.html" target="_blank">html</a>
+                    <a href="$p.txt" target="_blank">view</a><br>
                 </td> 
                 <td class="breadcrumb"><small>$report_summary</small><td>
 	         </tr>
