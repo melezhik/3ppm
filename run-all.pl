@@ -45,10 +45,11 @@ print SUMMARY <<HERE;
 HERE
 
     print SUMMARY '
-	<div class="panel panel-default">
-        <div class="panel-body">
-            Third Party Tests Reports
-	        <table class="table table-stripped">
+    <div class="container">
+	    <div class="panel panel-default">
+            <div class="panel-body">
+                Third Party Tests Reports
+	            <table class="table table-stripped">
     	';
 
     print SUMMARY "
@@ -78,7 +79,7 @@ HERE
 	    </tr> \n";
     }
 
-    print SUMMARY "</table></div></div>\n";
+    print SUMMARY "</table></div></div></div>\n";
     close SUMMARY;
 
 }
