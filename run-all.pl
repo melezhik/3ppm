@@ -90,7 +90,7 @@ END {
 print SUMMARY <<HERE;
 
 <head>
-    <title>cpanparty - Third Party Tests for CPAN modules</title>
+    <title>CPANParty - Third Party Tests for CPAN Modules</title>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta content="utf-8" http-equiv="encoding">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
@@ -105,7 +105,7 @@ HERE
 
     <div class="container">
 	    <div class="panel panel-default">
-            <div class="panel-heading">cpanparty - Third Party Tests for CPAN modules</div>
+            <div class="panel-heading">CPANParty - Third Party Tests for CPAN Modules</div>
             <div class="panel-body">
 	            <table class="table">
 HERE
