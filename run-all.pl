@@ -7,10 +7,10 @@ BEGIN {
 
 use Net::EmptyPort qw(empty_port);
 use Time::Piece;
+use Sparrow::Constants;
 
 next unless /\S+/;
 next if /^\s*#/;
-
 
 my ($p, $m ) = split;
 
@@ -20,11 +20,24 @@ next if $ENV{skip_test};
 
 print "running $p for $m ... \n";
 
-system("(date; sparrow plg install $p) > /usr/share/cpanparty/$p.txt");
+print "calculating test suite check sum ... \n";
+
+if ( -d sparrow_root()."/plugins/public/$p" ){
+    system('find '.sparrow_root()."/plugins/public/$p -type f -print0 | xargs -0 md5sum > /tmp/a.txt");
+}else{
+    print "plugin not installed ... skip check sum calculation\n";
+    system("echo > /tmp/a.txt");
+}
+
+my $plugin_upd_time;
+
+my @s = stat("/usr/share/cpanparty/$p.status");
+
+system("(date; sparrow plg install $p; echo; echo; echo;) > /usr/share/cpanparty/$p.txt");
 
 my $port = empty_port();
 
-system("export port=$port && export pid_file=/tmp/app_$port; sparrow plg run $p > /usr/share/cpanparty/$p.txt ; echo \$? > /usr/share/cpanparty/$p.status;   kill ".'`'."cat /tmp/app_$port".'`');
+system("export port=$port && export pid_file=/tmp/app_$port; sparrow plg run $p >> /usr/share/cpanparty/$p.txt ; echo \$? > /usr/share/cpanparty/$p.status;   kill ".'`'."cat /tmp/app_$port".'`');
 
 
 END {
