@@ -58,17 +58,29 @@ export port=$port
 
 export pid_file=/tmp/app_$port 
 
-echo "### tested application code " > /usr/share/cpanparty/$p.txt
 
 echo  >> /usr/share/cpanparty/$p.txt
 
 echo  >> /usr/share/cpanparty/$p.txt
 
-cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.txt
+if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
-echo  >> /usr/share/cpanparty/$p.txt
+    echo "### tested application code " > /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
 
-echo  >> /usr/share/cpanparty/$p.txt
+elif test -f ~/sparrow/plugins/public/$p/app.pl; then
+
+    echo "### tested application code " > /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    cat ~/sparrow/plugins/public/$p/app.pl  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+
+fi
+
 
 sparrow plg run $p >> /usr/share/cpanparty/$p.txt
 
@@ -131,7 +143,7 @@ HERE
         close $status_fh;
         my @s = stat("/usr/share/cpanparty/$p.status"); 
 
-    	my $check_date = gmtime($s[9])->strftime("%d %b %Y %H:%S");
+    	my $check_date = gmtime($s[9])->strftime("%d %b %Y %H:%M");
         my $status =  ( $st == 0 ) ? 
 		'<span class="label label-success">Passed</span>' : 
 		'<span class="label label-danger">Failed</span>';
