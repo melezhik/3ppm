@@ -44,9 +44,15 @@ print SUMMARY <<HERE;
 
 HERE
 
-    print SUMMARY "<table class='table table-stripped'>\n";
+    print SUMMARY '
+	<div class="panel panel-default">
+        <div class="panel-body">
+            Third Party Tests Reports
+	        <table class="table table-stripped">
+    	';
 
     print SUMMARY "
+	<th> check date </th> 
 	<th> test suite </th> 
 	<th> module </th>
 	<th> status </th> 
@@ -58,18 +64,21 @@ HERE
         close $status_fh;
 	my @stat = stat("/usr/share/3ppm/$p.status");
 	my $check_date = time2str("%Y/%m/%d %T\n", $stat[0][9]);
-        my $status =  ( $st == 0 ) ? 'OK' : 'FAIL';
+        my $status =  ( $st == 0 ) ? 
+		'<span class="label label-success">Passed</span>' : 
+		'<span class="label label-danger">Failed</span>';
 	my $st_class = ( $st == 0 ) ? 'success' : 'danger';
         print SUMMARY
             "<tr> 
+		<td> $check_date </td> 
 		<td> $p </td> 
-		<td> $tests{$p} </td> 
-		<td class='$st_class'> $status </td>
-		<td> <a href='$p.txt'>$check_date</a> </td> 
+		<td><strong> $tests{$p} </strong> </td> 
+		<td> $status </td>
+		<td> <a href='$p.txt'>link</a> </td> 
 	    </tr> \n";
     }
 
-    print SUMMARY "</table>\n";
+    print SUMMARY "</table></div></div>\n";
     close SUMMARY;
 
 }
