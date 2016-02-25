@@ -14,7 +14,7 @@ next if /^\s*#/;
 
 my ($p, $m ) = split;
 
-$tests{$p} = $m;
+push @tests, [$p, $m];
 
 next if $ENV{skip_test};
 
@@ -92,11 +92,16 @@ HERE
 	<th> status </th> 
 	<th> report </th>\n";
 
-    for my $p (keys %tests){
+    for my $t (@tests){
+
+        my $p = $t->[0];
+        my $m = $t->[1];
+
         open my $status_fh, "/usr/share/cpanparty/$p.status" or die $!;
         my $st = <$status_fh>;
         close $status_fh;
         my @s = stat("/usr/share/cpanparty/$p.status"); 
+
     	my $check_date = gmtime($s[9])->strftime("%d %b %Y %H:%S");
         my $status =  ( $st == 0 ) ? 
 		'<span class="label label-success">Passed</span>' : 
@@ -106,7 +111,7 @@ HERE
             "<tr> 
 		<td><small>$check_date</small></td> 
 		<td> $p </td> 
-		<td><strong> $tests{$p} </strong> </td> 
+		<td><strong> $m </strong> </td> 
 		<td> $status </td>
 		<td> <a href='$p.txt'>link</a> </td> 
 	    </tr> \n";
