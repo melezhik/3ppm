@@ -1,9 +1,10 @@
-BEGIN { system("sparrow index update 2>/dev/null") unless $ENV{skip_test}};
+BEGIN { 
+    system("sparrow index update 2>/dev/null") unless $ENV{skip_test}
+};
 
 
 use Net::EmptyPort qw(empty_port);
-use Date::Format;
-use File::stat;
+use Time::Piece;
 
 next unless /\S+/;
 next if /^\s*#/;
@@ -65,15 +66,15 @@ HERE
         open my $status_fh, "/usr/share/3ppm/$p.status" or die $!;
         my $st = <$status_fh>;
         close $status_fh;
-	my @stat = stat("/usr/share/3ppm/$p.status");
-	my $check_date = time2str("%Y/%m/%d %T\n", $stat[0][9]);
+        my @s = stat("/usr/share/3ppm/$p.status"); 
+    	my $check_date = gmtime($s[9])->strftime("%d %b %Y %H:%S");
         my $status =  ( $st == 0 ) ? 
 		'<span class="label label-success">Passed</span>' : 
 		'<span class="label label-danger">Failed</span>';
 	my $st_class = ( $st == 0 ) ? 'success' : 'danger';
         print SUMMARY
             "<tr> 
-		<td> $check_date </td> 
+		<td><small>$check_date</small></td> 
 		<td> $p </td> 
 		<td><strong> $tests{$p} </strong> </td> 
 		<td> $status </td>
