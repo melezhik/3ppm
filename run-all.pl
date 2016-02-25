@@ -91,12 +91,11 @@ HERE
 
     print SUMMARY<<HERE;
 
-
     <div class="container">
 	    <div class="panel panel-default">
             <div class="panel-heading">CPAN Party Test Reports </div>
             <div class="panel-body">
-	            <table class="table table-stripped">
+	            <table class="table">
 HERE
 
     print SUMMARY<<HERE;
@@ -128,11 +127,18 @@ HERE
         my $report_summary = join "<br>", (<$report_fh>)[-2];
         close $report_fh;
 
+        open my $cpansnap_fh, sparrow_root()."/plugins/public/$p/cpanfile.snapshot" or die $!;
+        my $cpansnap_str = join "", <$cpansnap_fh>;
+        my $mod_version;
+        $cpansnap_str=~/\s+$m\s+(\S+)/ and $mod_version=$1;
+
+        close $cpanspan_fh;
+
         print SUMMARY<<HERE;
             <tr> 
-		        <td><small>$check_date</small></td> 
+		        <td><nobr><small>$check_date</small></nobr></td> 
 		        <td> $p </td> 
-		        <td><strong> $m </strong> </td> 
+		        <td><strong> <nobr>$m $mod_version</nobr> </strong> </td> 
 		        <td> $status </td>
 		        <td>
                     <a href="$p.txt" target="_blank">view</a><br>
