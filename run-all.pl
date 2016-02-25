@@ -76,6 +76,8 @@ echo \$? > /usr/share/cpanparty/$p.status
 
 kill `cat /tmp/app_$port`
 
+rm /tmp/app_$port
+
 HERE
 
 
