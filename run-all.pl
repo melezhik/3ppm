@@ -23,17 +23,30 @@ print "running $p for $m ... \n";
 print "calculating test suite check sum ... \n";
 
 if ( -d sparrow_root()."/plugins/public/$p" ){
-    system('find '.sparrow_root()."/plugins/public/$p -type f -print0 | xargs -0 md5sum > /tmp/a.txt");
+    system('find '.sparrow_root()."/plugins/public/$p". ' -type f \( -not -iname 02packages.details.txt \)  -print0 | xargs -0 md5sum > /tmp/a.txt');
 }else{
     print "plugin not installed ... skip check sum calculation\n";
     system("echo > /tmp/a.txt");
 }
 
-my $plugin_upd_time;
+print "updating plugin ... \n";
 
-my @s = stat("/usr/share/cpanparty/$p.status");
+system("sparrow plg install $p");
 
-system("(date; sparrow plg install $p; echo; echo; echo;) > /usr/share/cpanparty/$p.txt");
+print "calculating test suite check sum after update ... \n";
+
+system('find '.sparrow_root()."/plugins/public/$p". ' -type f \( -not -iname 02packages.details.txt \)  -print0 | xargs -0 md5sum > /tmp/b.txt');
+
+
+if ( ! system('diff -u /tmp/a.txt /tmp/b.txt') ){
+    
+    if ($ENV{run_old_tests}){
+        print "test suite is uptodate - continue due to run_old_tests  \n";
+    }else{
+        print "test suite is uptodate - skip test run \n";
+        next;
+    }
+}
 
 my $port = empty_port();
 
