@@ -119,7 +119,7 @@ HERE
 
     <div class="container">
 	    <div class="panel panel-default">
-            <div class="panel-heading">CPANParty - Third Party Tests for CPAN Modules</div>
+            <div class="panel-heading"><strong>CPANParty - Third Party Tests for CPAN Modules</strong></div>
             <div class="panel-body">
 	            <table class="table">
 HERE
@@ -163,7 +163,22 @@ HERE
         print SUMMARY<<HERE;
             <tr> 
 		        <td><nobr><small>$check_date</small></nobr></td> 
-		        <td> $p </td> 
+		        <td> 
+                <a 
+                    role="button" data-toggle="collapse" 
+                    href="#collapse$p" aria-expanded="false" 
+                    aria-controls="collapse$p"
+                >
+                    $p
+                </a>
+                    <div class="collapse" id="collapse$p">
+                        <div class="text-left text-nowrap">
+                            <kbd>\$ sparrow index update</kbd><br>
+                            <kbd>\$ sparrow plg install $p</kbd><br>
+                            <kbd>\$ sparrow plg run $p</kbd><br>
+                        </div>
+                    </div>
+                </td> 
 		        <td><strong> <nobr>$m $mod_version</nobr> </strong> </td> 
 		        <td> $status </td>
 		        <td>
