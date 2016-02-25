@@ -48,7 +48,7 @@ HERE
     <div class="container">
 	    <div class="panel panel-default">
             <div class="panel-body">
-                Third Party Tests Reports
+                CPAN Party Tests Reports
 	            <table class="table table-stripped">
     	';
 
