@@ -1,3 +1,5 @@
 swat-kelp Kelp
 swat-dancer2 Dancer2
 swat-mojo-plugin-vparam Mojolicious::Plugin::Vparam 
+swat-dancer2-plugin-ajax Dancer2::Plugin::Ajax
+

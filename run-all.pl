@@ -8,6 +8,7 @@ BEGIN {
 use Net::EmptyPort qw(empty_port);
 use Time::Piece;
 use Sparrow::Constants;
+use File::Copy;
 
 next unless /\S+/;
 next if /^\s*#/;
@@ -119,7 +120,10 @@ HERE
 
     <div class="container">
 	    <div class="panel panel-default">
-            <div class="panel-heading"><strong>CPANParty - Third Party Tests for CPAN Modules</strong></div>
+            <div class="panel-heading">
+                <strong>CPANParty - Third Party Tests for CPAN Modules</strong>
+                <span class="breadcrumb">... there is more than one way to test it!</span>
+            </div>
             <div class="panel-body">
 	            <table class="table">
 HERE
@@ -130,6 +134,7 @@ HERE
 	    <th> module </th>
     	<th> status </th> 
 	    <th> report </th>
+	    <th> cpan.snapshot </th>
     	<th> summary </th> 
 HERE
 
@@ -159,6 +164,8 @@ HERE
         $cpansnap_str=~/\s+$m\s+(\S+)/ and $mod_version=$1;
 
         close $cpanspan_fh;
+        copy(sparrow_root()."/plugins/public/$p/cpanfile.snapshot", "/usr/share/cpanparty/$p.env.txt") 
+            or die "Copy failed: $!";
 
         print SUMMARY<<HERE;
             <tr> 
@@ -183,6 +190,9 @@ HERE
 		        <td> $status </td>
 		        <td>
                     <a href="$p.txt" target="_blank">view</a><br>
+                </td> 
+		        <td>
+                    <a href="$p.env.txt" target="_blank">show</a><br>
                 </td> 
                 <td class="breadcrumb"><small>$report_summary</small><td>
 	         </tr>
