@@ -191,7 +191,21 @@ HERE
 
     }
 
-    print SUMMARY "</table></div></div></div>\n";
+    print SUMMARY <<HERE;
+
+                </table>
+            </div>
+            <div class="panel-footer">
+                Want to test your cpan distribution? 
+                Create an <a href="https://github.com/melezhik/cpanparty">issue!
+                </a>
+            </div>
+
+        </div>
+    </div>
+
+HERE
+
     close SUMMARY;
 
 }
