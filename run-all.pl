@@ -134,7 +134,7 @@ HERE
 	    <th> module </th>
     	<th> status </th> 
 	    <th> report </th>
-	    <th> cpanfile.snapshot </th>
+	    <th> environment </th>
     	<th> summary </th> 
 HERE
 
