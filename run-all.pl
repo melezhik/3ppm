@@ -171,20 +171,7 @@ HERE
             <tr> 
 		        <td><nobr><small>$check_date</small></nobr></td> 
 		        <td> 
-                <a 
-                    role="button" data-toggle="collapse" 
-                    href="#collapse$p" aria-expanded="false" 
-                    aria-controls="collapse$p"
-                >
-                    $p
-                </a>
-                    <div class="collapse" id="collapse$p">
-                        <div class="text-left text-nowrap">
-                            <kbd>\$ sparrow index update</kbd><br>
-                            <kbd>\$ sparrow plg install $p</kbd><br>
-                            <kbd>\$ sparrow plg run $p</kbd><br>
-                        </div>
-                    </div>
+                    <a href="https://sparrowhub.org/info/$p" target="_blank">$p</a><br>
                 </td> 
 		        <td><strong> <nobr>$m $mod_version</nobr> </strong> </td> 
 		        <td> $status </td>
@@ -192,7 +179,7 @@ HERE
                     <a href="$p.txt" target="_blank">view</a><br>
                 </td> 
 		        <td>
-                    <a href="$p.env.txt" target="_blank">show</a><br>
+                    <a href="$p.env.txt" target="_blank">view</a><br>
                 </td> 
                 <td class="breadcrumb"><small>$report_summary</small><td>
 	         </tr>
