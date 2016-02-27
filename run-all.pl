@@ -121,8 +121,7 @@ HERE
     <div class="container">
 	    <div class="panel panel-default">
             <div class="panel-heading">
-                <strong>CPANParty - Third Party Tests for CPAN Modules</strong>
-                <span class="breadcrumb">... there is more than one way to test it!</span>
+                CPANParty - Third Party Tests for CPAN Modules ... There is more than one way to test it!
             </div>
             <div class="panel-body">
 	            <table class="table">
@@ -194,7 +193,7 @@ HERE
             </div>
             <div class="panel-footer">
                 Want to test your cpan distribution? 
-                Create an <a href="https://github.com/melezhik/cpanparty">issue!
+                Create an issue at <a href="https://github.com/melezhik/cpanparty">cpanparty</a>!
                 </a>
             </div>
 
