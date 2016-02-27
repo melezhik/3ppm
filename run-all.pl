@@ -135,6 +135,7 @@ HERE
 	    <th> report </th>
 	    <th> environment </th>
     	<th> summary </th> 
+    	<th> perlmalink </th> 
 HERE
 
     for my $t (@tests){
@@ -168,7 +169,7 @@ HERE
 
         print SUMMARY<<HERE;
             <tr> 
-		        <td><nobr><small>$check_date</small></nobr></td> 
+		        <td id="$p"><nobr><small>$check_date</small></nobr></td> 
 		        <td> 
                     <a href="https://sparrowhub.org/info/$p" target="_blank">$p</a><br>
                 </td> 
@@ -179,6 +180,9 @@ HERE
                 </td> 
 		        <td>
                     <a href="$p.env.txt" target="_blank">view</a><br>
+                </td> 
+		        <td>
+                    <a href="#$p" >permalink</a><br>
                 </td> 
                 <td class="breadcrumb"><small>$report_summary</small><td>
 	         </tr>
