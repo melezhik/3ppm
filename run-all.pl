@@ -142,7 +142,6 @@ HERE
 	    <th> report  </th>
 	    <th> install </th>
 	    <th> environment </th>
-    	<th> summary </th> 
     	<th> perlmalink </th> 
 HERE
 
@@ -197,7 +196,6 @@ HERE
 		        <td>
                     <a href="#$p" >permalink</a><br>
                 </td> 
-                <td class="breadcrumb"><small>$report_summary</small><td>
 	         </tr>
 
 HERE
@@ -211,7 +209,6 @@ HERE
             <div class="panel-footer">
                 Want to test your cpan distribution? 
                 Create an issue at <a href="https://github.com/melezhik/cpanparty">cpanparty</a>!
-                </a>
             </div>
 
         </div>
