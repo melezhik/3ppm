@@ -39,6 +39,10 @@ rm -rf /usr/share/cpanparty/$p.install.ok
 sparrow plg install $p 1> /usr/share/cpanparty/$p.install.txt 2>&1 && \
 touch /usr/share/cpanparty/$p.install.ok
 
+echo 'sparrow index update' > /usr/share/cpanparty/$p.howto.txt
+echo 'sparrow plg install $p' >> /usr/share/cpanparty/$p.howto.txt
+echo 'sparrow plg run $p' >> /usr/share/cpanparty/$p.howto.txt
+
 HERE
 
 print "calculating test suite check sum after update ... \n";
@@ -142,6 +146,7 @@ HERE
 	    <th> report  </th>
 	    <th> install </th>
 	    <th> environment </th>
+	    <th> how to run </th>
     	<th> perlmalink </th> 
 HERE
 
@@ -185,13 +190,16 @@ HERE
 		        <td><strong> <nobr>$m $mod_version</nobr> </strong> </td> 
 		        <td> $status </td>
 		        <td>
-                    <a href="$p.txt" target="_blank">view</a><br>
+                    <a href="$p.txt" target="_blank">report</a><br>
                 </td> 
 		        <td>
-                    <a href="$p.install.txt" target="_blank">$install_status</a><br>
+                    <a href="$p.install.txt" target="_blank">install - $install_status</a><br>
                 </td> 
 		        <td>
-                    <a href="$p.env.txt" target="_blank">view</a><br>
+                    <a href="$p.env.txt" target="_blank">env</a><br>
+                </td> 
+		        <td>
+                    <a href="$p.howto.txt" target="_blank">how to run</a><br>
                 </td> 
 		        <td>
                     <a href="#$p" >permalink</a><br>
