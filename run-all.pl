@@ -32,7 +32,14 @@ if ( -d sparrow_root()."/plugins/public/$p" ){
 
 print "updating plugin ... \n";
 
-system("sparrow plg install $p");
+system <<HERE;
+
+rm -rf /usr/share/cpanparty/$p.install.ok
+
+sparrow plg install $p 1> /usr/share/cpanparty/$p.install.txt 2>&1 && \
+touch /usr/share/cpanparty/$p.install.ok
+
+HERE
 
 print "calculating test suite check sum after update ... \n";
 
@@ -130,9 +137,10 @@ HERE
     print SUMMARY<<HERE;
 	    <th> check date </th> 
     	<th> test suite </th> 
-	    <th> module </th>
-    	<th> status </th> 
-	    <th> report </th>
+	    <th> module  </th>
+    	<th> status  </th> 
+	    <th> report  </th>
+	    <th> install </th>
 	    <th> environment </th>
     	<th> summary </th> 
     	<th> perlmalink </th> 
@@ -167,6 +175,8 @@ HERE
         copy(sparrow_root()."/plugins/public/$p/cpanfile.snapshot", "/usr/share/cpanparty/$p.env.txt") 
             or die "Copy failed: $!";
 
+        my $install_status = -f "/usr/share/cpanparty/$p.install.ok" ? 'OK': 'FAIL';
+
         print SUMMARY<<HERE;
             <tr> 
 		        <td id="$p"><nobr><small>$check_date</small></nobr></td> 
@@ -177,6 +187,9 @@ HERE
 		        <td> $status </td>
 		        <td>
                     <a href="$p.txt" target="_blank">view</a><br>
+                </td> 
+		        <td>
+                    <a href="$p.install.txt" target="_blank">$install_status</a><br>
                 </td> 
 		        <td>
                     <a href="$p.env.txt" target="_blank">view</a><br>
