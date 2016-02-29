@@ -4,4 +4,5 @@ swat-mojo-plugin-vparam Mojolicious::Plugin::Vparam
 swat-dancer2-plugin-ajax Dancer2::Plugin::Ajax
 swat-dancer2-plugin-res Dancer2::Plugin::Res
 swat-plack-middleware-stacktrace-linked-source Plack::Middleware::StackTrace::LinkedSource
+swat-raisin Raisin
 
