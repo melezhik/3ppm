@@ -6,4 +6,5 @@ swat-dancer2-plugin-res Dancer2::Plugin::Res
 swat-plack-middleware-stacktrace-linked-source Plack::Middleware::StackTrace::LinkedSource
 swat-raisin Raisin
 swat-dancer2-plugin-feed Dancer2::Plugin::Feed
+outth-date-time DateTime
 
