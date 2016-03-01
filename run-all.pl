@@ -91,6 +91,9 @@ elif test -f ~/sparrow/plugins/public/$p/app.pl; then
     echo  >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
 
+else
+    echo  > /usr/share/cpanparty/$p.txt
+
 fi
 
 export outth_show_story=1
