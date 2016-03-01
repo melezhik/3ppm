@@ -70,10 +70,7 @@ export port=$port
 
 export pid_file=/tmp/app_$port 
 
-
-echo  >> /usr/share/cpanparty/$p.txt
-
-echo  >> /usr/share/cpanparty/$p.txt
+truncate -s 0 /usr/share/cpanparty/$p.txt
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
@@ -90,9 +87,6 @@ elif test -f ~/sparrow/plugins/public/$p/app.pl; then
     cat ~/sparrow/plugins/public/$p/app.pl  >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
-
-else
-    echo  > /usr/share/cpanparty/$p.txt
 
 fi
 
