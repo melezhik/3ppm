@@ -7,4 +7,6 @@ swat-plack-middleware-stacktrace-linked-source Plack::Middleware::StackTrace::Li
 swat-raisin Raisin
 swat-dancer2-plugin-feed Dancer2::Plugin::Feed
 outth-date-time DateTime
+outth-test2-tools-compare Test2::Suite
+
 
