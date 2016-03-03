@@ -140,7 +140,6 @@ HERE
     	<th> test suite </th> 
 	    <th> module  </th>
     	<th> status  </th> 
-	    <th> report  </th>
 	    <th> install </th>
 	    <th> environment </th>
 	    <th> how to run </th>
@@ -176,7 +175,9 @@ HERE
         copy(sparrow_root()."/plugins/public/$p/cpanfile.snapshot", "/usr/share/cpanparty/$p.env.txt") 
             or die "Copy failed: $!";
 
-        my $install_status = -f "/usr/share/cpanparty/$p.install.ok" ? 'OK': 'FAIL';
+        my $install_status = -f "/usr/share/cpanparty/$p.install.ok" ? 
+            '<span class="label label-info">OK</span>' :
+            '<span class="label label-warning">FAIL</span>';
 
         print SUMMARY<<HERE;
             <tr> 
@@ -185,12 +186,12 @@ HERE
                     <a href="https://sparrowhub.org/info/$p" target="_blank">$p</a><br>
                 </td> 
 		        <td><strong> <nobr>$m $mod_version</nobr> </strong> </td> 
-		        <td> $status </td>
-		        <td>
+		        <td> $status - 
                     <a href="$p.txt" target="_blank">report</a><br>
                 </td> 
 		        <td>
-                    <a href="$p.install.txt" target="_blank">install - $install_status</a><br>
+                    $install_status - 
+                    <a href="$p.install.txt" target="_blank">install log</a><br>
                 </td> 
 		        <td>
                     <a href="$p.env.txt" target="_blank">env</a><br>
