@@ -10,5 +10,5 @@ outth-date-time DateTime
 outth-test2-tools-compare Test2::Suite
 swat-mojo-app-as-plugin Mojolicious
 swat-dancer2-ajax Dancer2
-
+swat-dancer2-auth-extensible Dancer2::Plugin::Auth::Extensible
 
