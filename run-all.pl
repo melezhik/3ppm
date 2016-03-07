@@ -72,9 +72,10 @@ export pid_file=/tmp/app_$port
 
 truncate -s 0 /usr/share/cpanparty/$p.txt
 
+
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
-    echo "### tested application code " > /usr/share/cpanparty/$p.txt
+    echo "### tested application code " >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
     cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
@@ -82,7 +83,7 @@ if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
 elif test -f ~/sparrow/plugins/public/$p/app.pl; then
 
-    echo "### tested application code " > /usr/share/cpanparty/$p.txt
+    echo "### tested application code " >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
     cat ~/sparrow/plugins/public/$p/app.pl  >> /usr/share/cpanparty/$p.txt
     echo  >> /usr/share/cpanparty/$p.txt
@@ -90,7 +91,33 @@ elif test -f ~/sparrow/plugins/public/$p/app.pl; then
 
 fi
 
+if test -f ~/sparrow/plugins/public/$p/config.yml; then
+
+    echo "### tested application config " >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    cat ~/sparrow/plugins/public/$p/config.yml  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+
+elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
+
+    echo "### tested application config " >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    cat ~/sparrow/plugins/public/$p/config.yaml  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+    echo  >> /usr/share/cpanparty/$p.txt
+
+fi
+
 export outth_show_story=1
+
+export swat_disable_color=1
+
+export match_l=1000
+
+export swat_purge_cache=1
+
+
 sparrow plg run $p >> /usr/share/cpanparty/$p.txt
 
 echo \$? > /usr/share/cpanparty/$p.status
