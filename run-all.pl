@@ -63,6 +63,7 @@ if ( ! system('diff -q /tmp/a.txt /tmp/b.txt') ){
 print "running $p test suite for $m ... \n";
 
 my $port = empty_port();
+my $report="/usr/share/cpanparty/$p.html";
 
 system <<HERE;
 
@@ -70,12 +71,10 @@ export port=$port
 
 export pid_file=/tmp/app_$port 
 
-truncate -s 0 /usr/share/cpanparty/$p.html
-
-report="/usr/share/cpanparty/$p.html"
+truncate -s 0 $report
 
 echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre>' >> $report
-echo '<head><title>cpanparty test report $p for $m</title></head>' >> $report
+echo '<head><title>cpanparty test report. $p for $m</title></head>' >> $report
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
