@@ -128,8 +128,8 @@ export match_l=1000
 export swat_purge_cache=1
 
 echo "### test report" >> $report
-echo > $report
-echo > $report
+echo >> $report
+echo >> $report
 
 
 echo  '<pre>' >> $report
