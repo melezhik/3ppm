@@ -73,22 +73,26 @@ export pid_file=/tmp/app_$port
 
 truncate -s 0 $report
 
-echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre class="code">' >> $report
+echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" />' >> $report
 echo '<head><title>cpanparty test report. $p for $m</title></head>' >> $report
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
-    echo "### tested application code " >> $report
+    echo "### tested application code" >> $report
     echo  >> $report
+    echo '<pre class="code">' >> $report
     cat ~/sparrow/plugins/public/$p/app.psgi  >> $report
+    echo '</pre>' >> $report
     echo  >> $report
     echo  >> $report
 
 elif test -f ~/sparrow/plugins/public/$p/app.pl; then
 
-    echo "### tested application code " >> /usr/share/cpanparty/$p.html
+    echo "### tested application code" >> /usr/share/cpanparty/$p.html
     echo  >> $report
+    echo '<pre class="code">' >> $report
     cat ~/sparrow/plugins/public/$p/app.pl  >> $report
+    echo '</pre>' >> $report
     echo  >> $report
     echo  >> $report
 
@@ -96,17 +100,21 @@ fi
 
 if test -f ~/sparrow/plugins/public/$p/config.yml; then
 
-    echo "### tested application config " >> $report
+    echo "### tested application config" >> $report
     echo  >> $report
+    echo '<pre class="config">' >> $report
     cat ~/sparrow/plugins/public/$p/config.yml  >> $report
+    echo '</pre>' >> $report
     echo  >> $report
     echo  >> $report
 
 elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
 
-    echo "### tested application config " >> $report
+    echo "### tested application config" >> $report
     echo  >> $report
+    echo '<pre class="config">' >> $report
     cat ~/sparrow/plugins/public/$p/config.yaml  >> $report
+    echo '</pre>' >> $report
     echo  >> $report
     echo  >> $report
 
@@ -121,7 +129,7 @@ export match_l=1000
 export swat_purge_cache=1
 
 
-echo  '</pre><pre>' >> $report
+echo  '<pre>' >> $report
 
 sparrow plg run $p | ansi2html >> $report
 

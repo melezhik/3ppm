@@ -1,6 +1,13 @@
 .code {
     background-color: darkgreen;
     font-weight: bold;
+    color: black;
+}
+
+.config {
+    background-color: darkyellow;
+    font-weight: normal;
+    color: black;
 
 }
 
