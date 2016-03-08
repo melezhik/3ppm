@@ -70,55 +70,59 @@ export port=$port
 
 export pid_file=/tmp/app_$port 
 
-truncate -s 0 /usr/share/cpanparty/$p.txt
+truncate -s 0 /usr/share/cpanparty/$p.html
 
+echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre>' >> /usr/share/cpanparty/$p.html
+echo '<head><title>cpanparty test report $p for $m</title></head>'
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
-    echo "### tested application code " >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
+    echo "### tested application code " >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
 
 elif test -f ~/sparrow/plugins/public/$p/app.pl; then
 
-    echo "### tested application code " >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    cat ~/sparrow/plugins/public/$p/app.pl  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
+    echo "### tested application code " >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    cat ~/sparrow/plugins/public/$p/app.pl  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
 
 fi
 
 if test -f ~/sparrow/plugins/public/$p/config.yml; then
 
-    echo "### tested application config " >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    cat ~/sparrow/plugins/public/$p/config.yml  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
+    echo "### tested application config " >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    cat ~/sparrow/plugins/public/$p/config.yml  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
 
 elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
 
-    echo "### tested application config " >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    cat ~/sparrow/plugins/public/$p/config.yaml  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
-    echo  >> /usr/share/cpanparty/$p.txt
+    echo "### tested application config " >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    cat ~/sparrow/plugins/public/$p/config.yaml  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
+    echo  >> /usr/share/cpanparty/$p.html
 
 fi
 
 export outth_show_story=1
 
-export swat_disable_color=1
+#export swat_disable_color=1
 
 export match_l=1000
 
 export swat_purge_cache=1
 
 
-sparrow plg run $p >> /usr/share/cpanparty/$p.txt
+sparrow plg run $p | ansi2html >> /usr/share/cpanparty/$p.html
+
+echo "</pre>" >> /usr/share/cpanparty/$p.html
 
 echo \$? > /usr/share/cpanparty/$p.status
 
@@ -189,7 +193,7 @@ HERE
 		'<span class="label label-danger">Failed</span>';
    	    my $st_class = ( $st == 0 ) ? 'success' : 'danger';
 
-        open my $report_fh, "/usr/share/cpanparty/$p.txt" or die $!;
+        open my $report_fh, "/usr/share/cpanparty/$p.html" or die $!;
         my $report_summary = join "<br>", (<$report_fh>)[-2];
         close $report_fh;
 
@@ -214,7 +218,7 @@ HERE
                 </td> 
 		        <td><strong> <nobr>$m $mod_version</nobr> </strong> </td> 
 		        <td> $status - 
-                    <a href="$p.txt" target="_blank">report</a><br>
+                    <a href="$p.html" target="_blank">report</a><br>
                 </td> 
 		        <td>
                     $install_status - 
