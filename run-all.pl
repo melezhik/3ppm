@@ -72,42 +72,44 @@ export pid_file=/tmp/app_$port
 
 truncate -s 0 /usr/share/cpanparty/$p.html
 
-echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre>' >> /usr/share/cpanparty/$p.html
-echo '<head><title>cpanparty test report $p for $m</title></head>'
+report="/usr/share/cpanparty/$p.html"
+
+echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre>' >> $report
+echo '<head><title>cpanparty test report $p for $m</title></head>' >> $report
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
-    echo "### tested application code " >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    cat ~/sparrow/plugins/public/$p/app.psgi  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
+    echo "### tested application code " >> $report
+    echo  >> $report
+    cat ~/sparrow/plugins/public/$p/app.psgi  >> $report
+    echo  >> $report
+    echo  >> $report
 
 elif test -f ~/sparrow/plugins/public/$p/app.pl; then
 
     echo "### tested application code " >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    cat ~/sparrow/plugins/public/$p/app.pl  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
+    echo  >> $report
+    cat ~/sparrow/plugins/public/$p/app.pl  >> $report
+    echo  >> $report
+    echo  >> $report
 
 fi
 
 if test -f ~/sparrow/plugins/public/$p/config.yml; then
 
-    echo "### tested application config " >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    cat ~/sparrow/plugins/public/$p/config.yml  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
+    echo "### tested application config " >> $report
+    echo  >> $report
+    cat ~/sparrow/plugins/public/$p/config.yml  >> $report
+    echo  >> $report
+    echo  >> $report
 
 elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
 
-    echo "### tested application config " >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    cat ~/sparrow/plugins/public/$p/config.yaml  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
-    echo  >> /usr/share/cpanparty/$p.html
+    echo "### tested application config " >> $report
+    echo  >> $report
+    cat ~/sparrow/plugins/public/$p/config.yaml  >> $report
+    echo  >> $report
+    echo  >> $report
 
 fi
 
@@ -120,9 +122,9 @@ export match_l=1000
 export swat_purge_cache=1
 
 
-sparrow plg run $p | ansi2html >> /usr/share/cpanparty/$p.html
+sparrow plg run $p | ansi2html >> $report
 
-echo "</pre>" >> /usr/share/cpanparty/$p.html
+echo "</pre>" >> $report
 
 echo \$? > /usr/share/cpanparty/$p.status
 
