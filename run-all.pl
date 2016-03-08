@@ -110,10 +110,6 @@ if test -f ~/sparrow/plugins/public/$p/config.yml; then
 
 elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
 
-    echo "### test report" >> $report
-    echo > $report
-    echo > $report
-
     echo  >> $report
     echo '<pre class="config">' >> $report
     cat ~/sparrow/plugins/public/$p/config.yaml  >> $report
@@ -130,6 +126,10 @@ export outth_show_story=1
 export match_l=1000
 
 export swat_purge_cache=1
+
+echo "### test report" >> $report
+echo > $report
+echo > $report
 
 
 echo  '<pre>' >> $report
