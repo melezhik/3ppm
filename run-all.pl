@@ -110,7 +110,10 @@ if test -f ~/sparrow/plugins/public/$p/config.yml; then
 
 elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
 
-    echo "### tested application config" >> $report
+    echo "### test report" >> $report
+    echo > $report
+    echo > $report
+
     echo  >> $report
     echo '<pre class="config">' >> $report
     cat ~/sparrow/plugins/public/$p/config.yaml  >> $report
