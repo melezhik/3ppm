@@ -73,7 +73,7 @@ export pid_file=/tmp/app_$port
 
 truncate -s 0 $report
 
-echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre>' >> $report
+echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" /><pre class="code">' >> $report
 echo '<head><title>cpanparty test report. $p for $m</title></head>' >> $report
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
