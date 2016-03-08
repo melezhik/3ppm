@@ -121,6 +121,8 @@ export match_l=1000
 export swat_purge_cache=1
 
 
+echo  '</pre><pre>' >> $report
+
 sparrow plg run $p | ansi2html >> $report
 
 echo "</pre>" >> $report
