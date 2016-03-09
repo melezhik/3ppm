@@ -132,7 +132,7 @@ echo >> $report
 echo >> $report
 
 
-echo  '<pre>' >> $report
+echo  '<pre class="report">' >> $report
 
 sparrow plg run $p | ansi2html >> $report
 
