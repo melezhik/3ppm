@@ -269,4 +269,33 @@ HERE
 
     close SUMMARY;
 
+print "update css ... \n";
+
+
+open CSS, ">", "/usr/share/cpanparty/cpanparty.css" or die $!;
+
+print CSS <<HERE;
+
+.code {
+    background-color: darkgreen;
+    font-weight: bold;
+    color: black;
+}
+
+.config {
+    background-color: yellow;
+    font-weight: normal;
+    color: black;
+
+}
+
+
+.report {
+    background-color: black;
+}
+
+HERE
+
+close CSS;
+
 }
