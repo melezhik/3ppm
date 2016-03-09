@@ -127,6 +127,8 @@ export match_l=1000
 
 export swat_purge_cache=1
 
+export output_mod=cpanparty
+
 echo "### test report" >> $report
 echo >> $report
 echo >> $report
