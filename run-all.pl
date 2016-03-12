@@ -75,12 +75,13 @@ truncate -s 0 $report
 
 echo '<link rel="stylesheet" type="text/css" href="cpanparty.css" media="screen" />' >> $report
 echo '<head><title>cpanparty test report. $p for $m</title></head>' >> $report
+echo '<script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js"></script>' >> $report
 
 if test -f ~/sparrow/plugins/public/$p/app.psgi; then
 
     echo "### tested application code" >> $report
     echo  >> $report
-    echo '<pre class="code">' >> $report
+    echo '<pre class="prettyprint lang-perl code">' >> $report
     cat ~/sparrow/plugins/public/$p/app.psgi  >> $report
     echo '</pre>' >> $report
     echo  >> $report
@@ -90,7 +91,7 @@ elif test -f ~/sparrow/plugins/public/$p/app.pl; then
 
     echo "### tested application code" >> /usr/share/cpanparty/$p.html
     echo  >> $report
-    echo '<pre class="code">' >> $report
+    echo '<pre class="prettyprint lang-perl code">' >> $report
     cat ~/sparrow/plugins/public/$p/app.pl  >> $report
     echo '</pre>' >> $report
     echo  >> $report
@@ -102,7 +103,7 @@ if test -f ~/sparrow/plugins/public/$p/config.yml; then
 
     echo "### tested application config" >> $report
     echo  >> $report
-    echo '<pre class="config">' >> $report
+    echo '<pre class="config prettyprint">' >> $report
     cat ~/sparrow/plugins/public/$p/config.yml  >> $report
     echo '</pre>' >> $report
     echo  >> $report
@@ -111,7 +112,7 @@ if test -f ~/sparrow/plugins/public/$p/config.yml; then
 elif test -f ~/sparrow/plugins/public/$p/config.yaml; then
 
     echo  >> $report
-    echo '<pre class="config">' >> $report
+    echo '<pre class="config prettyprint">' >> $report
     cat ~/sparrow/plugins/public/$p/config.yaml  >> $report
     echo '</pre>' >> $report
     echo  >> $report
@@ -279,9 +280,8 @@ open CSS, ">", "/usr/share/cpanparty/cpanparty.css" or die $!;
 print CSS <<HERE;
 
 .code {
-    background-color: darkgreen;
+    background-color: lightgray;
     font-weight: bold;
-    color: black;
 }
 
 .config {
